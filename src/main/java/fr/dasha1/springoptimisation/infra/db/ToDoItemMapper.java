@@ -7,7 +7,7 @@ import java.util.List;
 
 @Mapper
 public interface ToDoItemMapper {
-    List<fr.dasha1.springoptimisation.domain.model.ToDoItem> map(Iterable<ToDoItem> toDoItems);
+    List<fr.dasha1.springoptimisation.domain.model.ToDoItem> map(Iterable<ToDoItemEntity> toDoItems);
     @Mapping(source = "businessId", target = "id")
-    fr.dasha1.springoptimisation.domain.model.ToDoItem map(ToDoItem toDoItem);
+    fr.dasha1.springoptimisation.domain.model.ToDoItem map(ToDoItemEntity toDoItemEntity);
 }

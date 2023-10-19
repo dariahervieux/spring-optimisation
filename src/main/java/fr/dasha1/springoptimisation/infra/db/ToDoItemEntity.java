@@ -6,7 +6,8 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-public class ToDoItem {
+@Table(name = "TO_DO_ITEM")
+public class ToDoItemEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,10 +21,10 @@ public class ToDoItem {
     private LocalDate dueDate;
 
 
-    public ToDoItem() {
+    public ToDoItemEntity() {
     }
 
-    public ToDoItem(String businessId, String title, String description, Status status, LocalDate dueDate) {
+    public ToDoItemEntity(String businessId, String title, String description, Status status, LocalDate dueDate) {
         this.businessId = businessId;
         this.title = title;
         this.description = description;
@@ -31,7 +32,7 @@ public class ToDoItem {
         this.dueDate = dueDate;
     }
 
-    public ToDoItem(String businessId, String title, String description) {
+    public ToDoItemEntity(String businessId, String title, String description) {
         this(businessId, title, description, Status.NEW, null);
     }
 

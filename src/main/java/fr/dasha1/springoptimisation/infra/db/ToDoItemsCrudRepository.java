@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ToDoItemsCrudRepository extends CrudRepository<ToDoItem, Long> {
+public interface ToDoItemsCrudRepository extends CrudRepository<ToDoItemEntity, Long> {
 
-    Iterable<ToDoItem> findAllByStatusIsNot(Status status);
+    Iterable<ToDoItemEntity> findAllByStatusIsNot(Status status);
 }

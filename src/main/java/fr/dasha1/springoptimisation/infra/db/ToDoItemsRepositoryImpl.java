@@ -6,6 +6,8 @@ import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class ToDoItemsRepositoryImpl implements ToDoItemsRepository {
     private final ToDoItemsCrudRepository toDoItemsCrudRepository;
@@ -17,8 +19,8 @@ public class ToDoItemsRepositoryImpl implements ToDoItemsRepository {
         this.toDoItemsCrudRepository = toDoItemsCrudRepository;
     }
 
-    public Iterable<fr.dasha1.springoptimisation.domain.model.ToDoItem> getAllNotDone() {
-        final Iterable<ToDoItem> allByStatusIsNot = toDoItemsCrudRepository.findAllByStatusIsNot(Status.DONE);
+    public List<fr.dasha1.springoptimisation.domain.model.ToDoItem> getAllNotDone() {
+        final Iterable<ToDoItemEntity> allByStatusIsNot = toDoItemsCrudRepository.findAllByStatusIsNot(Status.DONE);
         return mapper.map(allByStatusIsNot);
     }
 
