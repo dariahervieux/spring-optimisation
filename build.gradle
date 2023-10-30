@@ -16,25 +16,69 @@ repositories {
 	mavenCentral()
 }
 
-dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation "org.mapstruct:mapstruct:$mapstructVersion"
+ext {
+	libraries = [
+			swagger : [
+				dependencies.create("io.swagger.core.v3:swagger-core-jakarta:$swaggerVersion"),
+				dependencies.create( "io.swagger.core.v3:swagger-models:$swaggerVersion")
+			],
+			jpa : [
+				//dependencies.create("org.springframework.boot:spring-boot-starter-jdbc"),
+				dependencies.create("com.zaxxer:HikariCP"),
+				//dependencies.create("org.springframework:spring-jdbc"),
+				dependencies.create("org.hibernate.orm:hibernate-core"),
+				dependencies.create("org.springframework.data:spring-data-jpa") {
+					//exclude group: 'org.springframework', module: 'spring-jdbc'
+				},
+				//dependencies.create("org.springframework:spring-aspects")
+			],
+			web : [
+				dependencies.create("org.springframework:spring-webmvc"),
+				dependencies.create("org.apache.tomcat.embed:tomcat-embed-core"),
+				dependencies.create("com.fasterxml.jackson.module:jackson-module-parameter-names"),
+				dependencies.create("com.fasterxml.jackson.datatype:jackson-datatype-jdk8"),
+				dependencies.create("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
+			],
+			boot : [
+				dependencies.create("org.springframework.boot:spring-boot-autoconfigure"),
+				dependencies.create("jakarta.annotation:jakarta.annotation-api")
+			],
+			logging : [
+				dependencies.create("ch.qos.logback:logback-classic")
+				//dependencies.create("org.slf4j:slf4j-api"),
+				//dependencies.create("org.slf4j:slf4j-log4j12")
+			]
+	]
 
-	implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:$springdocOpenapiVersion"
-	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	//env = findProperty('env') ?: 'dev'
+}
+
+dependencies {
+	implementation libraries.jpa
+
+	implementation libraries.boot
+
+	implementation libraries.web
+
+	implementation libraries.logging
+
+	//implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation "org.mapstruct:mapstruct:$mapstructVersion"
 
 	annotationProcessor "org.mapstruct:mapstruct-processor:$mapstructVersion"
 
+	implementation libraries.swagger
+
+	//dependencies excluded from an executable jar or war
+	// swagger dependencies are only used for development
+	developmentOnly "org.springdoc:springdoc-openapi-starter-webmvc-ui:$springdocOpenapiVersion"
+	// actuators endpoints are only used for development
+	developmentOnly 'org.springframework.boot:spring-boot-starter-actuator'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
 	runtimeOnly 'com.h2database:h2:2.2.224'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-}
-
-tasks.named("bootBuildImage") {
-    imageName = "${project.name}:main"
 }
 
 
