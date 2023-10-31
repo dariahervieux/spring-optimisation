@@ -1,6 +1,6 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.2.0'
+	id 'org.springframework.boot' version '3.1.4'
 	id 'io.spring.dependency-management' version '1.1.3'
 	id 'org.hibernate.orm' version '6.2.9.Final'
 }
@@ -14,29 +14,75 @@ java {
 
 repositories {
 	mavenCentral()
+	mavenLocal()
+}
+
+ext {
+	libraries = [
+			swagger : [
+				dependencies.create("io.swagger.core.v3:swagger-core-jakarta:$swaggerVersion"),
+				dependencies.create( "io.swagger.core.v3:swagger-models:$swaggerVersion")
+			]
+	]
+
+	//env = findProperty('env') ?: 'dev'
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
+
+	// required for annotations such as @ConfigurationProperties
+	implementation 'io.quarkus:quarkus-spring-boot-properties'
+	// required for annotations such as @Autowired
+	implementation 'io.quarkus:quarkus-spring-di'
+	// required for annotations such as @RestController, @GetMapping
+	implementation 'io.quarkus:quarkus-spring-web'
+	// Jackson support
+	implementation 'io.quarkus:quarkus-resteasy-jackson'
+	// JPA support
+	implementation 'io.quarkus:quarkus-spring-data-jpa'
+	implementation 'io.quarkus:quarkus-jdbc-h2'
+	implementation 'io.quarkus:quarkus-hibernate-orm'
+
+	// servlet support
+	implementation 'io.quarkus:quarkus-undertow'
+	implementation 'io.quarkus:quarkus-resteasy'
+
+	// implementation("ch.qos.logback:logback-classic:1.2.3") // when using Logback
+
+
 	implementation "org.mapstruct:mapstruct:$mapstructVersion"
 
-	implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:$springdocOpenapiVersion"
-	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation libraries.swagger
 
 	annotationProcessor "org.mapstruct:mapstruct-processor:$mapstructVersion"
 
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
-	runtimeOnly 'com.h2database:h2:2.2.224'
+	runtimeOnly 'com.h2database:h2:2.1.214'
 
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'io.quarkus:quarkus-junit5'
+	testImplementation 'org.mockito:mockito-junit-jupiter:3.11.2'
+	testImplementation 'org.assertj:assertj-core:3.24.2'
 }
 
-tasks.named("bootBuildImage") {
-    imageName = "${project.name}:main"
+quarkus {
+	// If you want to build a native image, please set this property accordingly
+	// See https://quarkus.io/guides/building-native-image-guide for more information
+	// buildNative = true
+
 }
 
+test {
+	systemProperty "java.util.logging.manager", "org.jboss.logmanager.LogManager"
+}
+compileJava {
+	options.encoding = 'UTF-8'
+	options.compilerArgs << '-parameters'
+}
+
+compileTestJava {
+	options.encoding = 'UTF-8'
+}
 
 tasks.named('test') {
 	useJUnitPlatform()
