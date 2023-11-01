@@ -41,12 +41,12 @@ dependencies {
 	implementation 'io.quarkus:quarkus-resteasy-jackson'
 	// JPA support
 	implementation 'io.quarkus:quarkus-spring-data-jpa'
-	implementation 'io.quarkus:quarkus-jdbc-h2'
+	runtimeOnly 'io.quarkus:quarkus-jdbc-h2'
 	implementation 'io.quarkus:quarkus-hibernate-orm'
 
 	// servlet support
 	implementation 'io.quarkus:quarkus-undertow'
-	implementation 'io.quarkus:quarkus-resteasy'
+	//implementation 'io.quarkus:quarkus-resteasy'
 
 	// implementation("ch.qos.logback:logback-classic:1.2.3") // when using Logback
 
