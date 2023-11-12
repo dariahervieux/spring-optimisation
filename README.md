@@ -1,3 +1,11 @@
+# Spring Application with Spring Boot 3 AOT anf GraalVM Native Image
+
+## Run the application
+
+```bash
+$ java -Dspring.aot.enabled=true -jar ./build/libs/spring-optimisation-0.0.1-SNAPSHOT.jar
+```
+
 ## Additional components available
 
 ### Swagger
@@ -26,13 +34,13 @@ Running docker image from the application source root:
 docker run --rm -p 8080:8080 -v "$(pwd)"/db:/db docker.io/library/spring-optimisation:0.0.1-SNAPSHOT
 ```
 
-Running jar:
-```shell
-java
-```
-
 ## Endpoints
 
 /api/dynamic
 /api/prioritized-items
 /api/test
+
+## Resources
+* [Spring Native](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/)
+* [GraalVM Native Image](https://www.graalvm.org/latest/reference-manual/native-image/)
+
