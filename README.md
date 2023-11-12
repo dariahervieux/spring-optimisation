@@ -2,6 +2,7 @@
 
 ## Run the application
 
+In JVM mode:
 ```bash
 $ java -Dspring.aot.enabled=true -jar ./build/libs/spring-optimisation-0.0.1-SNAPSHOT.jar
 ```

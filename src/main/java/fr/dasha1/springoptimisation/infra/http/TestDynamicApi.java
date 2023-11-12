@@ -2,6 +2,7 @@ package fr.dasha1.springoptimisation.infra.http;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.dasha1.springoptimisation.domain.model.ToDoItem;
+import org.springframework.aot.hint.annotation.RegisterReflectionForBinding;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,7 @@ public class TestDynamicApi {
     }
 
     @GetMapping
+    @RegisterReflectionForBinding({fr.dasha1.springoptimisation.domain.model.conveymatrix.ConveyToDoItem.class})
     public String testReflection() {
         try {
             Class<?> clazz = Class.forName("fr.dasha1.springoptimisation.domain.model.conveymatrix.ConveyToDoItem");
