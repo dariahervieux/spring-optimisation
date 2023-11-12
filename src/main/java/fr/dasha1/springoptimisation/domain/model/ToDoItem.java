@@ -21,10 +21,6 @@ public class ToDoItem {
         this.dueDate = dueDate;
     }
 
-//    public ToDoItem(String id, String title, String description) {
-//        this(id, title, description, LocalDate.now().plusDays(3));
-//    }
-
 
     public String getId() {
         return id;

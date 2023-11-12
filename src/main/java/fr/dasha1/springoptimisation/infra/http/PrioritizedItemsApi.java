@@ -2,7 +2,6 @@ package fr.dasha1.springoptimisation.infra.http;
 
 import fr.dasha1.springoptimisation.domain.cases.port.in.PrioritizingService;
 import fr.dasha1.springoptimisation.domain.model.ToDoItem;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,8 +13,11 @@ import java.util.List;
 @RequestMapping("/api/prioritized-items")
 public class PrioritizedItemsApi {
 
-    @Autowired
-    private PrioritizingService prioritizingService;
+    private final PrioritizingService prioritizingService;
+
+    public PrioritizedItemsApi(PrioritizingService prioritizingService) {
+        this.prioritizingService = prioritizingService;
+    }
 
     /**
      * Getting all non-done items prioritized. For now, the prioritization is a no-op.
