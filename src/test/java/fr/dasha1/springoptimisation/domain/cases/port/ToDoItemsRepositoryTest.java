@@ -3,25 +3,30 @@ package fr.dasha1.springoptimisation.domain.cases.port;
 import fr.dasha1.springoptimisation.domain.model.Status;
 import fr.dasha1.springoptimisation.domain.model.ToDoItem;
 import fr.dasha1.springoptimisation.infra.db.ToDoItemEntity;
+import fr.dasha1.springoptimisation.infra.db.ToDoItemMapperImpl;
 import fr.dasha1.springoptimisation.infra.db.ToDoItemsCrudRepository;
 import fr.dasha1.springoptimisation.infra.db.ToDoItemsRepositoryImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class ToDoItemsRepositoryTest {
 
     @Mock
     private ToDoItemsCrudRepository toDoItemsRepositoryMock;
+    @Spy
+    private ToDoItemMapperImpl toDoItemMapper;
     @InjectMocks
     private ToDoItemsRepositoryImpl toDoItemsRepository;
 
@@ -40,6 +45,8 @@ class ToDoItemsRepositoryTest {
                         new ToDoItem("ABCF", "Item 1", "Item 1 Descr", dueDate),
                         new ToDoItem("AFCF", "Item 2", "Item 2 Descr", dueDate),
                         new ToDoItem("AFC6", "Item 3", "Item 3 Descr", dueDate));
+
+        verify(toDoItemMapper, times(3)).map(any(ToDoItemEntity.class));
     }
 
 

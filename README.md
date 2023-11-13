@@ -1,5 +1,12 @@
 # Spring Application with Spring Boot 3 AOT anf GraalVM Native Image
 
+## Build the application
+
+Build a native executable using GraalVM Native Build Tools:
+```bash
+$ ./gradlew nativeCompile
+```
+
 ## Run the application
 
 In JVM mode:
@@ -44,4 +51,8 @@ docker run --rm -p 8080:8080 -v "$(pwd)"/db:/db docker.io/library/spring-optimis
 ## Resources
 * [Spring Native](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/)
 * [GraalVM Native Image](https://www.graalvm.org/latest/reference-manual/native-image/)
+* https://docs.oracle.com/en/graalvm/enterprise/21/docs/reference-manual/native-image/#native-image
+* https://docs.oracle.com/en/learn/understanding-reflection-graalvm-native-image/index.html
+* [Collect Metadata with the Tracing Agent](https://www.graalvm.org/latest/reference-manual/native-image/metadata/AutomaticMetadataCollection/)
+* [Paper - Initialize Once, Start Fast: Application Initialization at Build Time](https://dl.acm.org/doi/pdf/10.1145/3360610)
 
