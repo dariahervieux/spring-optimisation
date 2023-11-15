@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # spring app
-SAPP=build/libs/spring-optimisation-0.0.1-SNAPSHOT.jar
+SAPP=build/native/nativeCompile/spring-optimisation
 
-echo "Starting spring app.."
-date +"%T.%3N"  && java -Dspring.aot.enabled=true -jar $SAPP
+echo "Starting native image of the spring app.."
+date +"%T.%3N"  &&  $SAPP
