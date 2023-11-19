@@ -1,16 +1,9 @@
 #!/bin/bash
 
 # spring app
-SAPP=build/libs/spring-optimisation-0.0.1-SNAPSHOT.jar
-QAPP=build/quarkus-app/quarkus-run.jar
-APP=$SAPP 
-if test -f "$SAPP"
+APP=build/libs/spring-optimisation-0.0.1-SNAPSHOT.jar
+if test -f "$APP"
 then
     echo "Starting spring app.."
+    date +"%T.%3N"  && java -jar $APP
 fi
-if test -f "$QAPP"
-then 
-    echo  "Starting Quarkus app"
-    APP=$QAPP
-fi
-date +"%T.%3N"  && java -jar $APP
