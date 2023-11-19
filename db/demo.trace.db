@@ -1,0 +1,3 @@
+2023-11-19 23:18:39.388928+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TO_DO_ITEM" not found (this database is empty); SQL statement:
+select t1_0.id,t1_0.business_id,t1_0.description,t1_0.due_date,t1_0.status,t1_0.title from to_do_item t1_0 where t1_0.status!=? [42104-224]

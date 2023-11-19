@@ -37,5 +37,4 @@ out/
 .vscode/
 
 ### Project ###
-/*.db
 *.log
