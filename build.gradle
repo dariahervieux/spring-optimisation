@@ -65,7 +65,7 @@ dependencies {
 	//implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation "org.mapstruct:mapstruct:$mapstructVersion"
 
-	annotationProcessor "org.mapstruct:mapstruct-processor:$mapstructVersion"
+    annotationProcessor "org.mapstruct:mapstruct-processor:$mapstructVersion"
 
 	implementation libraries.swagger
 
@@ -81,9 +81,10 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
+tasks.named("bootBuildImage") {
+    imageName = "${project.name}:reduce"
+}
 
 tasks.named('test') {
 	useJUnitPlatform()
 }
-
-

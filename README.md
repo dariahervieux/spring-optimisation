@@ -23,7 +23,7 @@ Building the application and creating a Docker image:
 
 Running docker image from the application source root:
 ```shell
-docker run --rm -p 8080:8080 -v "$(pwd)"/db:/db docker.io/library/spring-optimisation:0.0.1-SNAPSHOT
+docker run --rm -p 8080:8080 -v "$(pwd)"/db:/db docker.io/library/spring-optimisation:reduce
 ```
 
 Running jar:
