@@ -16,23 +16,12 @@ repositories {
 	mavenCentral()
 }
 
-ext {
-	libraries = [
-			swagger : [
-				dependencies.create("io.swagger.core.v3:swagger-core-jakarta:$swaggerVersion"),
-				dependencies.create( "io.swagger.core.v3:swagger-models:$swaggerVersion")
-			]
-	]
-
-	//env = findProperty('env') ?: 'dev'
-}
-
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation "org.mapstruct:mapstruct:$mapstructVersion"
 
-	implementation libraries.swagger
+	implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:$springdocOpenapiVersion"
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
 	annotationProcessor "org.mapstruct:mapstruct-processor:$mapstructVersion"
