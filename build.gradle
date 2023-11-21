@@ -44,6 +44,11 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
+tasks.named("bootBuildImage") {
+    imageName = "${project.name}:main"
+}
+
+
 tasks.named('test') {
 	useJUnitPlatform()
 }
