@@ -23,14 +23,9 @@ ext {
 				dependencies.create( "io.swagger.core.v3:swagger-models:$swaggerVersion")
 			],
 			jpa : [
-				//dependencies.create("org.springframework.boot:spring-boot-starter-jdbc"),
 				dependencies.create("com.zaxxer:HikariCP"),
-				//dependencies.create("org.springframework:spring-jdbc"),
 				dependencies.create("org.hibernate.orm:hibernate-core"),
-				dependencies.create("org.springframework.data:spring-data-jpa") {
-					//exclude group: 'org.springframework', module: 'spring-jdbc'
-				},
-				//dependencies.create("org.springframework:spring-aspects")
+				dependencies.create("org.springframework.data:spring-data-jpa")
 			],
 			web : [
 				dependencies.create("org.springframework:spring-webmvc"),
@@ -45,26 +40,18 @@ ext {
 			],
 			logging : [
 				dependencies.create("ch.qos.logback:logback-classic")
-				//dependencies.create("org.slf4j:slf4j-api"),
-				//dependencies.create("org.slf4j:slf4j-log4j12")
 			]
 	]
-
-	//env = findProperty('env') ?: 'dev'
 }
 
 dependencies {
 	implementation libraries.jpa
-
 	implementation libraries.boot
-
 	implementation libraries.web
-
 	implementation libraries.logging
 
 	//implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation "org.mapstruct:mapstruct:$mapstructVersion"
-
     annotationProcessor "org.mapstruct:mapstruct-processor:$mapstructVersion"
 
 	implementation libraries.swagger
