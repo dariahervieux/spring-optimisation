@@ -36,6 +36,17 @@ dependencies {
 
 tasks.named("bootBuildImage") {
     imageName = "${project.name}:aot"
+
+    builder="paketobuildpacks/builder:tiny"
+    environment= [
+            "BP_JVM_VERSION": "21.0.1",
+            "BP_NATIVE_IMAGE": "true",
+        ]
+    buildpacks= [
+            "gcr.io/paketo-buildpacks/graalvm",
+            "gcr.io/paketo-buildpacks/java-native-image",
+        ]
+
 }
 
 
