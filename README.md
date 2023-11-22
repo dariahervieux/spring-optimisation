@@ -2,9 +2,19 @@
 
 ## Build the application
 
+Build with AOT for JVM mode:
+```bash
+$ ./gradlew processAot bootJar
+```
+
 Build a native executable using GraalVM Native Build Tools:
 ```bash
 $ ./gradlew nativeCompile
+```
+
+Building the application and creating a Docker image:
+```shell
+./gradlew  bootBuildImage --no-daemon --info
 ```
 
 ## Run the application
@@ -28,12 +38,6 @@ OpenAPI description is available at the following url for json format: http://lo
 Implemented using [Spring Boot Actuator](https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html)
 Health check is available at http://localhost:8080/actuator/health
 
-## Building a project
-
-Building the application and creating a Docker image:
-```shell
-./gradlew  bootBuildImage --no-daemon --info
-```
 
 ## Running the application
 
