@@ -9,7 +9,7 @@ group = 'fr.da-sha1'
 version = '0.0.1-SNAPSHOT'
 
 java {
-	sourceCompatibility = '20'
+	sourceCompatibility = '21'
 }
 
 repositories {
@@ -31,7 +31,8 @@ dependencies {
 
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
-	runtimeOnly 'com.h2database:h2:2.2.224'
+	//runtimeOnly 'com.h2database:h2:2.2.224'
+        runtimeOnly 'org.postgresql:postgresql'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
