@@ -36,3 +36,19 @@ java
 /api/dynamic
 /api/prioritized-items
 /api/test
+/api/checkpoint
+
+## CRaC
+
+Encountered problems:
+1. impossible to make a snapshot without running java app as root :
+Solution : 
+Make a snapshot as root.
+Is there a better solution??
+2. Imposible to take a snapshot on refresh - DefaultLyfecycleProcessos is not started at the point where checkpoint is taken, so HikariDatasource bean is not stopped.
+Solution:
+Make a snapshot using HTTP endpoint.
+
+# Resources
+
+https://www.slideshare.net/SimonRitter/java-on-crac

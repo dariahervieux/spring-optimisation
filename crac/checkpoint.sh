@@ -14,7 +14,8 @@ APP=build/libs/spring-optimisation-0.0.1-SNAPSHOT.jar
 if [ -z "$(ls -A $CRAC_FILES_DIR)" ]; then
 
   ## fire checkpoint on context refresh
-  java -Dspring.context.checkpoint=onRefresh -XX:CRaCCheckpointTo=$CRAC_FILES_DIR -jar $APP
+  # java -Dspring.context.checkpoint=onRefresh -Djdk.crac.collect-fd-stacktraces=true -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005  -XX:CRaCCheckpointTo=$CRAC_FILES_DIR -jar $APP
+  java -Djdk.crac.collect-fd-stacktraces=true -XX:CRaCCheckpointTo=$CRAC_FILES_DIR -jar $APP
   
   ## if no Dspring.context.checkpoint provided, you should trigger a chackpoint manually
   # java -Dspring.context.checkpoint=onRefresh -XX:CRaCCheckpointTo=$CRAC_FILES_DIR -jar $APP
