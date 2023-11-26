@@ -4,9 +4,7 @@ import com.zaxxer.hikari.HikariDataSource;
 import com.zaxxer.hikari.pool.HikariPool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.context.Lifecycle;
-import org.springframework.stereotype.Component;
 
 /**
  * Inspired by https://github.com/sdeleuze/spring-boot-crac-demo/blob/jpa/src/main/java/com/example/HikariLifecycle.java
@@ -19,12 +17,15 @@ public class HikariLifecycle implements Lifecycle {
 	private final HikariDataSource dataSource;
 
 	public HikariLifecycle(HikariDataSource dataSource) {
+		logger.info("HikariLifecycle constructor, dataSource.getHikariPoolMXBean()={}",
+						dataSource.getHikariPoolMXBean());
+
 		this.dataSource = dataSource;
 	}
 
 	@Override
 	public void start() {
-            logger.info("hikari - start");
+		logger.info("********hikari - start");
 		if (dataSource.getHikariPoolMXBean() instanceof HikariPool pool) {
 			if (pool.poolState == HikariPool.POOL_SUSPENDED) {
 				logger.info("hikari resume pool");
@@ -35,7 +36,7 @@ public class HikariLifecycle implements Lifecycle {
 
 	@Override
 	public void stop() {
-            logger.info("hikari - stop");
+		logger.info("*******hikari - stop");
 		if (dataSource.getHikariPoolMXBean() instanceof HikariPool pool) {
 			if (pool.poolState == HikariPool.POOL_NORMAL) {
 				logger.info("hikari suspend pool");
@@ -50,9 +51,9 @@ public class HikariLifecycle implements Lifecycle {
 
 	@Override
 	public boolean isRunning() {
-            logger.info("hikari - isRunning");
+		logger.info("*******hikari - isRunning");
 		if (dataSource.getHikariPoolMXBean() instanceof HikariPool pool) {
-			logger.info("hikari pool state: " + pool.poolState);
+			logger.info("hikari pool state: {}", pool.poolState);
 			return pool.poolState == 0;
 		}
 		return true;
