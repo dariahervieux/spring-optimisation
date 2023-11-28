@@ -15,15 +15,6 @@ repositories {
 	mavenLocal()
 }
 
-ext {
-	libraries = [
-			swagger : [
-				dependencies.create("io.swagger.core.v3:swagger-core-jakarta:$swaggerVersion"),
-				dependencies.create( "io.swagger.core.v3:swagger-models:$swaggerVersion")
-			]
-	]
-
-}
 
 dependencies {
 	implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
@@ -50,7 +41,7 @@ dependencies {
 
 	implementation "org.mapstruct:mapstruct:$mapstructVersion"
 
-	implementation libraries.swagger
+	implementation "io.quarkus:quarkus-smallrye-openapi"
 
 	annotationProcessor "org.mapstruct:mapstruct-processor:$mapstructVersion"
 
