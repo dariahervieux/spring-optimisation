@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # spring app
-APP=build/libs/spring-optimisation-0.0.1-SNAPSHOT.jar
+APP=build/quarkus-app/quarkus-run.jar
 if test -f "$APP"
 then
-    echo "Starting spring app.."
+    echo "Starting quarkus app.."
     date +"%T.%3N"  && java -jar $APP
 fi
