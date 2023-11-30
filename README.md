@@ -2,8 +2,13 @@
 
 ## Build and run
 
+In JVM mode:
 Build command line : ` ./gradlew build`
 Run command line : `java -jar  build/quarkus-app/quarkus-run.jar`
+
+In native mode:
+Build command line (without tests) : `./gradlew build -Dquarkus.package.type=native` -x test
+Run command line : `./target/spring-optimisation-1.0.0-SNAPSHOT-runner`
 
 ## Additional components available
 
