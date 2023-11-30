@@ -25,10 +25,10 @@ public class CheckpointApi {
             throw new ApplicationContextException("CRaC checkpoint not supported on current JVM", ex);
         }
         catch (CheckpointException ex) {
-            throw new ApplicationContextException("Failed to take CRaC checkpoint on refresh", ex);
+            throw new ApplicationContextException("Failed to take CRaC checkpoint on demand", ex);
         }
         catch (RestoreException ex) {
-            throw new ApplicationContextException("Failed to restore CRaC checkpoint on refresh", ex);
+            throw new ApplicationContextException("Failed to restore CRaC checkpoint on demand", ex);
         }
     }
 

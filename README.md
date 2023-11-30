@@ -33,8 +33,7 @@ java
 
 ## Endpoints
 
-/api/dynamic
-/api/prioritized-items
+/api/dyn
 /api/test
 /api/checkpoint
 
